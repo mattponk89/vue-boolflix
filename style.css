@@ -1,17 +1,17 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: 'Lato', sans-serif;
     box-sizing: border-box;
 }
-
+@import url('https://fonts.googleapis.com/css2?family=Arimo&display=swap%27');
 body {
     background: #1E2D3B;
     min-height: 100vh;
+    font-family: 'Arimo', sans-serif;
 }
 
 .container {
-    width: 1070px;
+    max-width: 1200px;
     height: 100%;
     margin: 0 auto;
 }
@@ -23,51 +23,80 @@ header {
 }
 header img {
     height: 50px;
-    margin-top: 10px;
 }
-.container-select{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
-}
-.cds-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.schede-container {
     flex-wrap: wrap;
     padding: 50px 0;
 }
 
-.cd {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-direction: column;
-    flex-basis: 200px;
+.scheda {
+    width: calc(25% - 20px);
     padding: 20px;
-    margin: 10px 20px;
-    height: 360px;
+    margin: 10px;
+    height: 450px;
     background: rgb(46, 58, 70);
     text-align: center;
+    overflow: hidden;
 }
-
-.cd img {
+.scheda .img-film{
+  height: 300px;
+  overflow: hidden;
+  background: #BCBEC0;
+}
+.scheda .img-film img {
     max-width: 100%;
 }
-
-.cd h3 {
-    margin: 20px 0;
+.scheda .info-film {
+  height: 200px;
+  width: 100%;
+  overflow: hidden;
+}
+.scheda .info-film .title-film{
+  height: 70px;
+  overflow: hidden;
+}
+.scheda h3 {
+    margin-top: 5px;
     color: white;
-    font-size: 22px;
+    font-size: 16px;
     text-transform: uppercase;
 }
-
-.cd span.author {
-    color: grey;
-    font-size: 20px;
+.scheda .info-film span.vote {
+    color: red;
+    font-size: 13px;
+    padding: 0 10px;
 }
 
-.cd span.year {
+.scheda .info-film span.year {
     color: grey;
+    font-size: 13px;
+}
+
+/* classi flex */
+.d-flex{
+  display: flex;
+}
+.flex-dir-col{
+  flex-direction:column;
+}
+.flex-jc-center{
+  justify-content: center;
+}
+.flex-jc-space-b{
+  justify-content: space-between;
+}
+.flex-jc-space-a{
+  justify-content: space-around;
+}
+.flex-jc-start{
+  justify-content: flex-start;
+}
+.flex-jc-end{
+  justify-content: flex-end;
+}
+.flex-align-center{
+  align-items: center;
+}
+.align-self-end{
+  align-self: flex-end;
 }

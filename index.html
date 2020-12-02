@@ -3,7 +3,6 @@
     <head>
         <meta charset="utf-8">
         <title>Boolean Netflix by MattPonk</title>
-        <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/vue"></script>
         <link rel="stylesheet" href="style.css">
@@ -12,29 +11,35 @@
       <div id="root">
         <header>
 
-          <div class="container">
-            <img src="logo.png" alt="logo" />
-          </div>
-          <div class="researchTitle">
-            <input type="text" name="researchTitle" @keydown.enter="searchMovies()" v-model="searchTitle">
+          <div class="container d-flex flex-jc-space-b flex-align-center">
+            <img src="netflix-logo.svg" alt="logo" />
+            <div class="menu">
+              <select class="selectLanguage" name="selectLanguage" v-model="language">
+                <option v-for="language in languages" :value="language.iso_639_1">{{language.english_name}}</option>
+              </select>
+              <input type="text" name="researchTitle" @keydown.enter="searchMovies()" v-model="searchTitle">
+            </div>
           </div>
         </header>
 
 
-        <div class="cds-container container">
+        <div class="schede-container container d-flex flex-jc-space-a flex-align-center">
 
           <!-- lista di dischi generati in base a quanti dischi vengono filtrati -->
-          <div class="cd" v-for="film in films">
-            <img :src="'https://image.tmdb.org/t/p/w500/'+film.poster_path" alt="">
-            <h3>{{film.title}}</h3>
-            <span class="author">{{film.popularity}}</span>
-            <span class="year">{{film.release_date}}</span>
+          <div class="scheda d-flex flex-jc-start flex-align-center flex-dir-col" v-for="film in films">
+            <div class="img-film">
+              <img :src="checkImg(film)" alt="">
+            </div>
+            <div class="info-film align-self-end d-flex flex-jc-space-b flex-align-center flex-dir-col">
+              <h3>{{film.title}}</h3>
+              <div class="">
+                <span class="year">{{film.release_date}}</span>
+                <span class="vote">{{film.vote_average}}/10</span>
+              </div>
+            </div>
           </div>
-
-
         </div>
       </div>
-
 
         <script src="main.js" charset="utf-8"></script>
     </body>
