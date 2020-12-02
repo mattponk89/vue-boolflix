@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Boolean Netflix by MattPonk</title>
+        <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+      <div id="root">
+        <header>
+
+          <div class="container">
+            <img src="logo.png" alt="logo" />
+          </div>
+          <div class="researchTitle">
+            <input type="text" name="researchTitle" @keydown.enter="searchMovies()" v-model="searchTitle">
+          </div>
+        </header>
+
+
+        <div class="cds-container container">
+
+          <!-- lista di dischi generati in base a quanti dischi vengono filtrati -->
+          <div class="cd" v-for="film in films">
+            <img :src="'https://image.tmdb.org/t/p/w500/'+film.poster_path" alt="">
+            <h3>{{film.title}}</h3>
+            <span class="author">{{film.popularity}}</span>
+            <span class="year">{{film.release_date}}</span>
+          </div>
+
+
+        </div>
+      </div>
+
+
+        <script src="main.js" charset="utf-8"></script>
+    </body>
+</html>
