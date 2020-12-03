@@ -11,7 +11,7 @@ body {
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 90%;
     height: 100%;
     margin: 0 auto;
 }
@@ -30,26 +30,31 @@ header img {
 }
 
 .scheda {
-    width: calc(25% - 20px);
-    padding: 20px;
+    width: calc(20% - 20px);
+    padding: 10px;
     margin: 10px;
-    height: 450px;
+    height: 335px;
     background: rgb(46, 58, 70);
     text-align: center;
     overflow: hidden;
 }
 .scheda .img-film{
-  height: 300px;
+  width: 100%;
   overflow: hidden;
   background: #BCBEC0;
 }
 .scheda .img-film img {
     max-width: 100%;
 }
+.scheda .flag img {
+  width: 30px;
+  height: 25px;
+}
 .scheda .info-film {
   height: 200px;
   width: 100%;
   overflow: hidden;
+  display:none;
 }
 .scheda .info-film .title-film{
   height: 70px;
@@ -61,10 +66,9 @@ header img {
     font-size: 16px;
     text-transform: uppercase;
 }
-.scheda .info-film span.vote {
+.scheda .info-film span.vote i {
     color: red;
-    font-size: 13px;
-    padding: 0 10px;
+    font-size: 20px;
 }
 
 .scheda .info-film span.year {

@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>Boolean Netflix by MattPonk</title>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/vue"></script>
         <link rel="stylesheet" href="style.css">
@@ -15,9 +16,9 @@
             <img src="netflix-logo.svg" alt="logo" />
             <div class="menu">
               <select class="selectLanguage" name="selectLanguage" v-model="language">
-                <option v-for="language in languages" :value="language.iso_639_1">{{language.english_name}}</option>
+                <option v-for="language in languages" :value="language.code">{{language.name}}</option>
               </select>
-              <input type="text" name="researchTitle" @keydown.enter="searchMovies()" v-model="searchTitle">
+              <input type="text" name="researchTitle" @keydown.enter="searchMovies()" v-model="searchTitle" placeholder="Search film">
             </div>
           </div>
         </header>
@@ -30,11 +31,21 @@
             <div class="img-film">
               <img :src="checkImg(film)" alt="">
             </div>
-            <div class="info-film align-self-end d-flex flex-jc-space-b flex-align-center flex-dir-col">
+            <div class="info-film align-self-end flex-jc-space-b flex-align-center flex-dir-col">
               <h3>{{film.title}}</h3>
+              <span class="vote">
+                <i class="fa-star" :class="((film.vote_average/2) >= 0.5) ? 'fas' : 'far'"></i>
+                <i class="fa-star" :class="((film.vote_average/2) >= 1.5) ? 'fas' : 'far'"></i>
+                <i class="fa-star" :class="((film.vote_average/2) >= 2.5) ? 'fas' : 'far'"></i>
+                <i class="fa-star" :class="((film.vote_average/2) >= 3.5) ? 'fas' : 'far'"></i>
+                <i class="fa-star" :class="((film.vote_average/2) == 4.5) ? 'fas' : 'far'"></i>
+
+              </span>
               <div class="">
-                <span class="year">{{film.release_date}}</span>
-                <span class="vote">{{film.vote_average}}/10</span>
+                <div class="flag">
+                  <img :src="film.original_language + '.svg'" alt="">
+                </div>
+                <span class="year">Release date: {{film.release_date}}</span>
               </div>
             </div>
           </div>
