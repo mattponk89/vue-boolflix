@@ -37,20 +37,21 @@ const app = new Vue({
     searchTitle: "",
     searchedTitle: "",
     page: 1,
-    maxPages: 1
+    maxPages: 1,
+    hoverFilm: ""
   },
   methods:{
     searchMovies: function(){
+      document.documentElement.scrollTop = 0
       this.page = 1
       this.searchedTitle = this.searchTitle
-      if(!this.searchedTitle){
-      }else{
+      if(this.searchedTitle){
         this.searchFilm()
         this.searchTv()
       }
     },
     validateFilm: function(el){
-      return ((el.vote_average > 2) && (el.poster_path != null) && ((el.original_language == this.language) || (el.original_language == "en" )))
+      return ((el.vote_average > 1) && (el.poster_path != null) && ((el.original_language == this.language) || (el.original_language == "en" )))
     },
     searchFilm: function(){
       axios.get("https://api.themoviedb.org/3/search/movie", {
@@ -93,7 +94,7 @@ const app = new Vue({
       if(!pathImg){
         img = "no-img.png"
       }else{
-        img = 'https://image.tmdb.org/t/p/w500/'+ pathImg
+        img = 'https://image.tmdb.org/t/p/w342/'+ pathImg
       }
       return img
     },

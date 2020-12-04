@@ -6,52 +6,61 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
       <div id="root">
         <header>
 
-          <div class="container d-flex flex-jc-space-b flex-align-center">
-            <img src="netflix-logo.svg" alt="logo" />
+          <div class="container dFlex flex-jc-space-b flex-align-center">
+            <img src="img/netflix-logo.svg" alt="logo" />
             <div class="menu">
+              <input class="research" type="text" name="researchTitle" @keydown.enter="searchMovies()" v-model="searchTitle" placeholder="&#xF002; Search films and tv shows">
               <select class="selectLanguage" name="selectLanguage" v-model="language">
                 <option v-for="language in languages" :value="language.code">{{language.name}}</option>
               </select>
-              <input type="text" name="researchTitle" @keydown.enter="searchMovies()" v-model="searchTitle" placeholder="Search film">
             </div>
           </div>
         </header>
 
 
-        <div class="schede-container container d-flex flex-jc-space-a flex-align-center">
+        <div class="schede-container container dFlex flex-jc-start flex-align-center">
 
           <!-- lista di dischi generati in base a quanti dischi vengono filtrati -->
-          <div class="scheda d-flex flex-jc-start flex-align-center flex-dir-col" v-for="film in films">
+          <div
+            class="scheda dFlex flex-jc-start flex-align-center flex-dir-col"
+            v-for="film in films"
+            @mouseover="hoverFilm = film.id"
+            @mouseleave="hoverFilm = ''">
             <div class="img-film">
-              <img :src="checkImg(film)" alt="">
+              <img
+                :src="checkImg(film)"
+                alt=""
+                :class="{opacity: hoverFilm === film.id}">
             </div>
-            <div class="info-film align-self-end flex-jc-space-b flex-align-center flex-dir-col">
+            <div
+            class="info-film align-self-center dFlex flex-jc-space-a flex-align-center flex-dir-col"
+            v-if="hoverFilm === film.id">
               <h3>{{film.title}}</h3>
-              <span class="vote">
-                <i class="fa-star" :class="((film.vote_average/2) >= 0.5) ? 'fas' : 'far'"></i>
-                <i class="fa-star" :class="((film.vote_average/2) >= 1.5) ? 'fas' : 'far'"></i>
-                <i class="fa-star" :class="((film.vote_average/2) >= 2.5) ? 'fas' : 'far'"></i>
-                <i class="fa-star" :class="((film.vote_average/2) >= 3.5) ? 'fas' : 'far'"></i>
-                <i class="fa-star" :class="((film.vote_average/2) == 4.5) ? 'fas' : 'far'"></i>
-
-              </span>
+              <div class="overview">{{film.overview}}</div>
               <div class="">
-                <div class="flag">
-                  <img :src="film.original_language + '.svg'" alt="">
+                <span class="vote">
+                  <i class="fa-star" :class="((film.vote_average/2) >= 0.5) ? 'fas' : 'far'"></i>
+                  <i class="fa-star" :class="((film.vote_average/2) >= 1.5) ? 'fas' : 'far'"></i>
+                  <i class="fa-star" :class="((film.vote_average/2) >= 2.5) ? 'fas' : 'far'"></i>
+                  <i class="fa-star" :class="((film.vote_average/2) >= 3.5) ? 'fas' : 'far'"></i>
+                  <i class="fa-star" :class="((film.vote_average/2) == 4.5) ? 'fas' : 'far'"></i>
+                </span>
+                <div class="flag dFlex flex-jc-space-a flex-align-center">
+                  <img :src="'img/' +film.original_language + '.svg'" alt="">
+                  <span class="year">Release: {{film.release_date}}</span>
                 </div>
-                <span class="year">Release date: {{film.release_date}}</span>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-        <script src="main.js" charset="utf-8"></script>
+        <script src="js/main.js" charset="utf-8"></script>
     </body>
 </html>
