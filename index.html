@@ -14,8 +14,14 @@
 
           <div class="container dFlex flex-jc-space-b flex-align-center">
             <img src="img/netflix-logo.svg" alt="logo" />
+            <div class="menuGenre" @click="resetPage(), searchPopular()">
+              <a href="#">POPULAR</a>
+            </div>
             <div class="menu">
-              <input class="research" type="text" name="researchTitle" @keydown.enter="searchMovies()" v-model="searchTitle" placeholder="&#xF002; Search films and tv shows">
+              <select class="typeSearch" name="typeSearch" v-model="genreSelected">
+                <option v-for="type in catSearch" :value="type">{{type}}</option>
+              </select>
+              <input class="research" type="search" name="researchTitle" @keydown.enter="searchMovies()" v-model="searchTitle" :placeholder="'&#xF002; Search ' + genreSelected">
               <select class="selectLanguage" name="selectLanguage" v-model="language">
                 <option v-for="language in languages" :value="language.code">{{language.name}}</option>
               </select>
@@ -53,7 +59,6 @@
                 </span>
                 <div class="flag dFlex flex-jc-space-a flex-align-center">
                   <img :src="'img/' +film.original_language + '.svg'" alt="">
-                  <span class="year">Release: {{film.release_date}}</span>
                 </div>
               </div>
             </div>
